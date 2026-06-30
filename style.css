@@ -52,3 +52,38 @@ footer {
     font-size: 0.9rem;
     color: #666;
 }
+body.dark-mode {
+    background-color: #121212;
+    color: #000000;
+}
+
+
+
+/* 1. Cambia el fondo de las tarjetas (bloques <section>) */
+body.dark-mode section {
+    background-color: #1e1e1e;   /* Un gris un poco más claro que el fondo general */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Sombra más oscura y profunda */
+    border: 1px solid #333;       /* Un borde muy sutil para dar definición */
+}
+
+body.dark-mode section p,
+body.dark-mode section li {
+    color: #b3b3b3; /* Un gris claro idéntico para ambos bloques de texto */
+}
+
+body.dark-mode section strong {
+    color: #ffffff; /* Dejamos las negritas en blanco puro para que resalten sobre el gris */
+}
+
+/* 3. Asegura que los títulos (h1, h2) sigan siendo legibles */
+body.dark-mode h1,
+body.dark-mode h2 {
+    color: #ffffff; /* Blanco puro para los títulos principales */
+}
+#boton-oscuro {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    padding: 10px 20px;
+    cursor: pointer;
+}
