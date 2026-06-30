@@ -56,8 +56,17 @@ body.dark-mode {
     background-color: #121212;
     color: #000000;
 }
-
-
+.logo-perfil {
+    width: 120px;          /* Controla el ancho del logo */
+    height: 120px;         /* Controla el alto (debe ser igual al ancho para un círculo perfecto) */
+    border-radius: 50%;    /* ¡Esta es la magia! Un radio del 50% hace la imagen completamente redonda */
+    object-fit: cover;     /* Evita que la imagen se estire o se deforme al recortarse */
+    margin-bottom: 1rem;   /* Separa un poco el logo del título de abajo */
+    border: 2px solid #2c3e50; /* Opcional: un borde sutil a juego con el diseño */
+}
+body.dark-mode .logo-perfil {
+    border-color: #ffffff; /* El borde sutil cambia a blanco en modo oscuro */
+}
 
 /* 1. Cambia el fondo de las tarjetas (bloques <section>) */
 body.dark-mode section {
