@@ -4,9 +4,250 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para ti ❤️</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- Cargamos una fuente elegante y moderna desde Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- ESTILOS GENERALES Y ELEGANTES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #0b0b0b;
+            overflow-x: hidden;
+            color: #ffffff;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- PANTALLA DE INICIO (Blanco, minimalista) --- */
+        #pantalla-inicio {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .tarjeta-inicio {
+            background-color: #ffffff;
+            border-radius: 30px;
+            padding: 50px 40px;
+            text-align: center;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.05);
+            max-width: 90%;
+            width: 400px;
+            border: 1px solid #eaeaea;
+        }
+
+        .tarjeta-inicio h1 {
+            font-weight: 300;
+            font-size: 2.2rem;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .tarjeta-inicio .corazon-intro {
+            font-size: 1.8rem;
+            color: #e25c5c;
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        #btn-abrir {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            border: none;
+            padding: 16px 45px;
+            font-size: 1.1rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        #btn-abrir:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            background-color: #000000;
+        }
+
+        /* --- CONTENIDO PRINCIPAL --- */
+        .oculto {
+            display: none !important;
+        }
+
+        /* Fondo animado (Fotos desplazándose lentamente) */
+        .fondo-animado {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+            background-color: #000000;
+        }
+
+        /* Capa oscura intermedia para asegurar que el texto sea ultra legible */
+        .fondo-animado::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.6));
+            z-index: 1;
+        }
+
+        .carrusel-fotos {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            /* Velocidad ajustable: 70 segundos para dar toda la vuelta de forma muy sutil */
+            animation: desplazamientoVertical 70s linear infinite;
+        }
+
+        .carrusel-fotos img {
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+            /* Filtro suave opcional para un toque extra estético */
+            filter: brightness(0.9) contrast(1.05); 
+        }
+
+        @keyframes desplazamientoVertical {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-50%); }
+        }
+
+        /* Contenedor del texto (Aquí corregimos el gap) */
+        .contenedor-texto {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* Ahora las secciones van seguidas, con una separación elegante de 35px */
+            gap: 35px; 
+            padding: 60px 20px;
+            min-height: 100vh;
+            justify-content: center;
+        }
+
+        /* Cajas de texto con efecto Cristal (Glassmorphism) */
+        .caja-cristal {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            padding: 40px 30px;
+            border-radius: 24px;
+            width: 100%;
+            max-width: 550px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            animation: aparecerSuave 1.5s ease forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        /* Pequeño retardo de animación para que las cajas aparezcan de forma escalonada */
+        .caja-cristal:nth-child(1) { animation-delay: 0.2s; }
+        .caja-cristal:nth-child(2) { animation-delay: 0.6s; }
+        .caja-cristal:nth-child(3) { animation-delay: 1s; }
+
+        @keyframes aparecerSuave {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Tipografías dentro de las secciones */
+        .titulo-grande {
+            font-size: 2.8rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .texto-carta {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.95);
+            text-align: justify;
+        }
+
+        .texto-carta p {
+            margin-bottom: 20px;
+        }
+
+        .texto-carta p:last-child {
+            margin-bottom: 0;
+        }
+
+        .titulo-final {
+            font-size: 2.2rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            color: #ffffff;
+        }
+
+        .corazon-latido {
+            display: inline-block;
+            color: #e25c5c;
+            animation: latido 1.2s infinite;
+            margin-top: 10px;
+            font-size: 2.5rem;
+        }
+
+        @keyframes latido {
+            0% { transform: scale(1); }
+            30% { transform: scale(1.15); }
+            50% { transform: scale(1); }
+            70% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
+        /* Optimización para pantallas muy pequeñas (móviles) */
+        @media (max-width: 480px) {
+            .tarjeta-inicio {
+                padding: 40px 25px;
+            }
+            .tarjeta-inicio h1 {
+                font-size: 1.8rem;
+            }
+            .titulo-grande {
+                font-size: 2.2rem;
+            }
+            .caja-cristal {
+                padding: 30px 20px;
+            }
+            .texto-carta {
+                font-size: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
+
     <!-- La música que sonará de fondo -->
     <audio id="musica-fondo" loop>
         <source src="cancion.mp3" type="audio/mpeg">
@@ -15,8 +256,9 @@
     <!-- Pantalla inicial de bienvenida -->
     <div id="pantalla-inicio">
         <div class="tarjeta-inicio">
-            <h1>Felices 18 ❤️</h1>
-            <button id="btn-abrir">Abrir</button>
+            <h1>Felices 18</h1>
+            <span class="corazon-intro">❤️</span>
+            <button id="btn-abrir">ABRIR</button>
         </div>
     </div>
 
@@ -26,38 +268,41 @@
         <!-- Contenedor del fondo animado -->
         <div class="fondo-animado">
             <div class="carrusel-fotos">
-                <!-- Carga tus 10 fotos aquí -->
-                <img src="fotos/foto1.JPG" alt="Nosotros">
-                <img src="fotos/foto2.JPG" alt="Nosotros">
-                <img src="fotos/foto3.JPG" alt="Nosotros">
-                <img src="fotos/foto4.JPG" alt="Nosotros">
-                <img src="fotos/foto5.JPG" alt="Nosotros">
-                <img src="fotos/foto6.JPG" alt="Nosotros">
-                <img src="fotos/foto7.JPG" alt="Nosotros">
-                <img src="fotos/foto8.JPG" alt="Nosotros">
-                <img src="fotos/foto9.JPG" alt="Nosotros">
-                <img src="fotos/foto10.JPG" alt="Nosotros">
+                <!-- Carga tus 10 fotos aquí dentro de la carpeta "fotos" -->
+                <img src="fotos/foto1.jpg" alt="Nuestra foto">
+                <img src="fotos/foto2.jpg" alt="Nuestra foto">
+                <img src="fotos/foto3.jpg" alt="Nuestra foto">
+                <img src="fotos/foto4.jpg" alt="Nuestra foto">
+                <img src="fotos/foto5.jpg" alt="Nuestra foto">
+                <img src="fotos/foto6.jpg" alt="Nuestra foto">
+                <img src="fotos/foto7.jpg" alt="Nuestra foto">
+                <img src="fotos/foto8.jpg" alt="Nuestra foto">
+                <img src="fotos/foto9.jpg" alt="Nuestra foto">
+                <img src="fotos/foto10.jpg" alt="Nuestra foto">
                 
-                <!-- IMPORTANTE: Repite exactamente las mismas fotos aquí abajo para el efecto infinito -->
-                <img src="fotos/foto1.JPG" alt="Nosotros">
-                <img src="fotos/foto2.JPG" alt="Nosotros">
-                <img src="fotos/foto3.JPG" alt="Nosotros">
-                <img src="fotos/foto4.JPG" alt="Nosotros">
-                <img src="fotos/foto5.JPG" alt="Nosotros">
-                <img src="fotos/foto6.JPG" alt="Nosotros">
-                <img src="fotos/foto7.JPG" alt="Nosotros">
-                <img src="fotos/foto8.JPG" alt="Nosotros">
-                <img src="fotos/foto9.JPG" alt="Nosotros">
-                <img src="fotos/foto10.JPG" alt="Nosotros">
+                <!-- IMPORTANTE: Duplicamos exactamente la lista aquí abajo para un bucle vertical perfecto -->
+                <img src="fotos/foto1.jpg" alt="Nuestra foto">
+                <img src="fotos/foto2.jpg" alt="Nuestra foto">
+                <img src="fotos/foto3.jpg" alt="Nuestra foto">
+                <img src="fotos/foto4.jpg" alt="Nuestra foto">
+                <img src="fotos/foto5.jpg" alt="Nuestra foto">
+                <img src="fotos/foto6.jpg" alt="Nuestra foto">
+                <img src="fotos/foto7.jpg" alt="Nuestra foto">
+                <img src="fotos/foto8.jpg" alt="Nuestra foto">
+                <img src="fotos/foto9.jpg" alt="Nuestra foto">
+                <img src="fotos/foto10.jpg" alt="Nuestra foto">
             </div>
         </div>
 
-        <!-- Secciones de texto superpuestas -->
+        <!-- Secciones de texto fluidas y consecutivas -->
         <div class="contenedor-texto">
+            
+            <!-- Bloque 1: Título -->
             <section class="caja-cristal">
                 <h2 class="titulo-grande">Felices 18</h2>
             </section>
 
+            <!-- Bloque 2: La carta personalizada -->
             <section class="caja-cristal">
                 <p>Antes de que abras tus regalos, quiero decirte algo muy importante.</p>
                 <p>La verdad que cuando empezamos no me esperaba que iba a llegar este día, en el que iba a estar contigo en tus 18 años.</p>
@@ -67,12 +312,39 @@
                 <p>Espero que este día sea tan especial como tú para mi.</p>
             </section>
 
+            <!-- Bloque 3: Cierre y Corazón latiendo -->
             <section class="caja-cristal">
-                <h2 class="titulo-final">Te amo ❤️</h2>
+                <h2 class="titulo-final">Te amo</h2>
+                <div class="corazon-latido">❤️</div>
             </section>
+            
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- Script para animaciones e interacción de sonido -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const btnAbrir = document.getElementById("btn-abrir");
+            const pantallaInicio = document.getElementById("pantalla-inicio");
+            const contenidoPrincipal = document.getElementById("contenido-principal");
+            const musica = document.getElementById("musica-fondo");
+
+            btnAbrir.addEventListener("click", () => {
+                // Intenta reproducir el archivo de sonido
+                musica.play().catch(error => {
+                    console.log("Reproducción automática bloqueada o archivo ausente:", error);
+                });
+
+                // Transición elegante desvaneciendo la pantalla blanca
+                pantallaInicio.style.opacity = "0";
+
+                // Una vez desvanecido, quitamos el bloque de inicio y revelamos el contenido
+                setTimeout(() => {
+                    pantallaInicio.style.display = "none";
+                    contenidoPrincipal.classList.remove("oculto");
+                }, 1200);
+            });
+        });
+    </script>
 </body>
 </html>
