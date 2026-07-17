@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para ti ❤️</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- La música que sonará de fondo -->
+    <audio id="musica-fondo" loop>
+        <source src="cancion.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Pantalla inicial de bienvenida -->
+    <div id="pantalla-inicio">
+        <div class="tarjeta-inicio">
+            <h1>Felices 18 ❤️</h1>
+            <button id="btn-abrir">Abrir</button>
+        </div>
+    </div>
+
+    <!-- Contenido principal (oculto hasta hacer clic) -->
+    <div id="contenido-principal" class="oculto">
+        
+        <!-- Contenedor del fondo animado -->
+        <div class="fondo-animado">
+            <div class="carrusel-fotos">
+                <!-- Carga tus 10 fotos aquí -->
+                <img src="fotos/foto1.JPG" alt="Nosotros">
+                <img src="fotos/foto2.JPG" alt="Nosotros">
+                <img src="fotos/foto3.JPG" alt="Nosotros">
+                <img src="fotos/foto4.JPG" alt="Nosotros">
+                <img src="fotos/foto5.JPG" alt="Nosotros">
+                <img src="fotos/foto6.JPG" alt="Nosotros">
+                <img src="fotos/foto7.JPG" alt="Nosotros">
+                <img src="fotos/foto8.JPG" alt="Nosotros">
+                <img src="fotos/foto9.JPG" alt="Nosotros">
+                <img src="fotos/foto10.JPG" alt="Nosotros">
+                
+                <!-- IMPORTANTE: Repite exactamente las mismas fotos aquí abajo para el efecto infinito -->
+                <img src="fotos/foto1.JPG" alt="Nosotros">
+                <img src="fotos/foto2.JPG" alt="Nosotros">
+                <img src="fotos/foto3.JPG" alt="Nosotros">
+                <img src="fotos/foto4.JPG" alt="Nosotros">
+                <img src="fotos/foto5.JPG" alt="Nosotros">
+                <img src="fotos/foto6.JPG" alt="Nosotros">
+                <img src="fotos/foto7.JPG" alt="Nosotros">
+                <img src="fotos/foto8.JPG" alt="Nosotros">
+                <img src="fotos/foto9.JPG" alt="Nosotros">
+                <img src="fotos/foto10.JPG" alt="Nosotros">
+            </div>
+        </div>
+
+        <!-- Secciones de texto superpuestas -->
+        <div class="contenedor-texto">
+            <section class="caja-cristal">
+                <h2 class="titulo-grande">Felices 18</h2>
+            </section>
+
+            <section class="caja-cristal">
+                <p>Antes de que abras tus regalos, quiero decirte algo muy importante.</p>
+                <p>La verdad que cuando empezamos no me esperaba que iba a llegar este día, en el que iba a estar contigo en tus 18 años.</p>
+                <p>Quiero que sepas que eres una persona muy especial para mí, y que me haces muy muy feliz.</p>
+                <p>Por mucho que discutamos o pase cualquier cosa entre nosotros, siempre voy a sentirme afortunado de poder tenerte a mi lado, y saber que estas ahí.</p>
+                <p>La verdad que ojala pudiera y regalarte todo lo que te mereces, porque te debo una y varias vidas por todo lo que haces por mí. Aún así, espero que te gusten y te alegren un poquito más este dia tan bonito.</p>
+                <p>Espero que este día sea tan especial como tú para mi.</p>
+            </section>
+
+            <section class="caja-cristal">
+                <h2 class="titulo-final">Te amo ❤️</h2>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
