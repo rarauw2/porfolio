@@ -34,7 +34,6 @@
             height: 100vh;
             background-color: #ffffff;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 100;
@@ -87,44 +86,6 @@
             background-color: #000000;
         }
 
-        /* --- PANEL DE DIAGNÓSTICO EN PANTALLA --- */
-        #panel-diagnostico {
-            position: absolute;
-            bottom: 20px;
-            max-width: 90%;
-            width: 450px;
-            background: rgba(254, 242, 242, 0.95);
-            border: 1px solid #fca5a5;
-            border-radius: 12px;
-            padding: 15px;
-            color: #991b1b;
-            font-size: 0.85rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            z-index: 110;
-            display: none; /* Se activa dinámicamente si hay errores */
-        }
-
-        #panel-diagnostico h3 {
-            font-weight: 600;
-            margin-bottom: 5px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        #panel-diagnostico ul {
-            list-style: none;
-            padding-left: 0;
-            max-height: 100px;
-            overflow-y: auto;
-        }
-
-        #panel-diagnostico li {
-            margin-top: 4px;
-            font-family: monospace;
-            word-break: break-all;
-        }
-
         /* --- CONTENIDO PRINCIPAL --- */
         .oculto {
             display: none !important;
@@ -142,13 +103,13 @@
             background-color: #000000;
         }
 
-        /* Capa oscura intermedia para asegurar legibilidad */
+        /* Capa oscura intermedia para asegurar que el texto sea ultra legible */
         .fondo-animado::after {
             content: '';
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.75));
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.6));
             z-index: 1;
         }
 
@@ -156,6 +117,7 @@
             display: flex;
             flex-direction: column;
             width: 100%;
+            /* Velocidad ajustable: 70 segundos para dar toda la vuelta de forma muy sutil */
             animation: desplazamientoVertical 70s linear infinite;
         }
 
@@ -163,7 +125,8 @@
             width: 100%;
             height: 100vh;
             object-fit: cover;
-            filter: brightness(0.85) contrast(1.05); 
+            /* Filtro suave opcional para un toque extra estético */
+            filter: brightness(0.9) contrast(1.05); 
         }
 
         @keyframes desplazamientoVertical {
@@ -171,13 +134,14 @@
             100% { transform: translateY(-50%); }
         }
 
-        /* Contenedor del texto */
+        /* Contenedor del texto (Aquí corregimos el gap) */
         .contenedor-texto {
             position: relative;
             z-index: 10;
             display: flex;
             flex-direction: column;
             align-items: center;
+            /* Ahora las secciones van seguidas, con una separación elegante de 35px */
             gap: 35px; 
             padding: 60px 20px;
             min-height: 100vh;
@@ -201,6 +165,7 @@
             transform: translateY(20px);
         }
 
+        /* Pequeño retardo de animación para que las cajas aparezcan de forma escalonada */
         .caja-cristal:nth-child(1) { animation-delay: 0.2s; }
         .caja-cristal:nth-child(2) { animation-delay: 0.6s; }
         .caja-cristal:nth-child(3) { animation-delay: 1s; }
@@ -212,7 +177,7 @@
             }
         }
 
-        /* Tipografías */
+        /* Tipografías dentro de las secciones */
         .titulo-grande {
             font-size: 2.8rem;
             font-weight: 300;
@@ -261,7 +226,7 @@
             100% { transform: scale(1); }
         }
 
-        /* Optimización móvil */
+        /* Optimización para pantallas muy pequeñas (móviles) */
         @media (max-width: 480px) {
             .tarjeta-inicio {
                 padding: 40px 25px;
@@ -283,7 +248,7 @@
 </head>
 <body>
 
-    <!-- La música de fondo -->
+    <!-- La música que sonará de fondo -->
     <audio id="musica-fondo" loop>
         <source src="cancion.mp3" type="audio/mpeg">
     </audio>
@@ -295,61 +260,59 @@
             <span class="corazon-intro">❤️</span>
             <button id="btn-abrir">ABRIR</button>
         </div>
-
-        <!-- Consola de diagnóstico visual -->
-        <div id="panel-diagnostico">
-            <h3>⚠️ Error de carga (Verifica nombres en GitHub):</h3>
-            <ul id="lista-errores"></ul>
-        </div>
     </div>
 
-    <!-- Contenido principal -->
+    <!-- Contenido principal (oculto hasta hacer clic) -->
     <div id="contenido-principal" class="oculto">
         
+        <!-- Contenedor del fondo animado -->
         <div class="fondo-animado">
             <div class="carrusel-fotos">
-                <!-- Fotos originales -->
-                <img src="fotos/foto1.JPG" alt="Nuestra foto" class="foto-comprobada">
-                <img src="fotos/foto2.JPG" alt="Nuestra foto" class="foto-comprobada">
-                <img src="fotos/foto3.JPG" alt="Nuestra foto" class="foto-comprobada">
-                <img src="fotos/foto4.JPG" alt="Nuestra foto" class="foto-comprobada">
-                <img src="fotos/foto5.JPG" alt="Nuestra foto" class="foto-comprobada">
-                <img src="fotos/foto6.JPG" alt="Nuestra foto" class="foto-comprobada">
-                <img src="fotos/foto7.JPG" alt="Nuestra foto" class="foto-comprobada">
-                <img src="fotos/foto8.JPG" alt="Nuestra foto" class="foto-comprobada">
-                <img src="fotos/foto9.JPG" alt="Nuestra foto" class="foto-comprobada">
-                <img src="fotos/foto10.JPG" alt="Nuestra foto" class="foto-comprobada">
+                <!-- Carga tus 10 fotos aquí dentro de la carpeta "fotos" -->
+                <img src="fotos/foto1.JPG" alt="Nuestra foto">
+                <img src="fotos/foto2.JPG" alt="Nuestra foto">
+                <img src="fotos/foto3.JPG" alt="Nuestra foto">
+                <img src="fotos/foto4.JPG" alt="Nuestra foto">
+                <img src="fotos/foto5.JPG" alt="Nuestra foto">
+                <img src="fotos/foto6.JPG" alt="Nuestra foto">
+                <img src="fotos/foto7.JPG" alt="Nuestra foto">
+                <img src="fotos/foto8.JPG" alt="Nuestra foto">
+                <img src="fotos/foto9.JPG" alt="Nuestra foto">
+                <img src="fotos/foto10.JPG" alt="Nuestra foto">
                 
-                <!-- Copia idéntica para animación fluida sin saltos -->
-                <img src="fotos/foto1.JPG" alt="Nuestra foto" class="foto-comprobada">
-                <img src="fotos/foto2.JPG" alt="Nuestra foto" class="foto-comprobada">
-                <img src="fotos/foto3.JPG" alt="Nuestra foto" class="foto-comprobada">
-                <img src="fotos/foto4.JPG" alt="Nuestra foto" class="foto-comprobada">
-                <img src="fotos/foto5.JPG" alt="Nuestra foto" class="foto-comprobada">
-                <img src="fotos/foto6.JPG" alt="Nuestra foto" class="foto-comprobada">
-                <img src="fotos/foto7.JPG" alt="Nuestra foto" class="foto-comprobada">
-                <img src="fotos/foto8.JPG" alt="Nuestra foto" class="foto-comprobada">
-                <img src="fotos/foto9.JPG" alt="Nuestra foto" class="foto-comprobada">
-                <img src="fotos/foto10.JPG" alt="Nuestra foto" class="foto-comprobada">
+                <!-- IMPORTANTE: Duplicamos exactamente la lista aquí abajo para un bucle vertical perfecto -->
+                <img src="fotos/foto1.JPG" alt="Nuestra foto">
+                <img src="fotos/foto2.JPG" alt="Nuestra foto">
+                <img src="fotos/foto3.JPG" alt="Nuestra foto">
+                <img src="fotos/foto4.JPG" alt="Nuestra foto">
+                <img src="fotos/foto5.JPG" alt="Nuestra foto">
+                <img src="fotos/foto6.JPG" alt="Nuestra foto">
+                <img src="fotos/foto7.JPG" alt="Nuestra foto">
+                <img src="fotos/foto8.JPG" alt="Nuestra foto">
+                <img src="fotos/foto9.JPG" alt="Nuestra foto">
+                <img src="fotos/foto10.JPG" alt="Nuestra foto">
             </div>
         </div>
 
         <!-- Secciones de texto fluidas y consecutivas -->
         <div class="contenedor-texto">
             
+            <!-- Bloque 1: Título -->
             <section class="caja-cristal">
                 <h2 class="titulo-grande">Felices 18</h2>
             </section>
 
+            <!-- Bloque 2: La carta personalizada -->
             <section class="caja-cristal">
-                <div class="texto-carta">
-                    <p>Mi amor,</p>
-                    <p>Parece mentira lo rápido que pasa el tiempo y que ya estés cumpliendo tus 18 años. Hoy empieza una etapa preciosa para ti, y me hace increíblemente feliz poder estar a tu lado para ver cómo creces, logras todo lo que te propones y sonríes de esa forma que me alegra todos los días.</p>
-                    <p>Gracias por cada momento que compartimos, por cada risa, cada abrazo y cada locura. Eres una persona maravillosa, inteligente y única, y te mereces el cumpleaños más bonito del mundo.</p>
-                    <p>Espero que te guste este pequeño detalle tecnológico que he preparado con todo mi cariño para ti. Que este nuevo año venga lleno de risas, de metas cumplidas y de muchos más momentos juntos.</p>
-                </div>
+                <p>Antes de que abras tus regalos, quiero decirte algo muy importante.</p>
+                <p>La verdad que cuando empezamos no me esperaba que iba a llegar este día, en el que iba a estar contigo en tus 18 años.</p>
+                <p>Quiero que sepas que eres una persona muy especial para mí, y que me haces muy muy feliz.</p>
+                <p>Por mucho que discutamos o pase cualquier cosa entre nosotros, siempre voy a sentirme afortunado de poder tenerte a mi lado, y saber que estas ahí.</p>
+                <p>La verdad que ojala pudiera y regalarte todo lo que te mereces, porque te debo una y varias vidas por todo lo que haces por mí. Aún así, espero que te gusten y te alegren un poquito más este dia tan bonito.</p>
+                <p>Espero que este día sea tan especial como tú para mi.</p>
             </section>
 
+            <!-- Bloque 3: Cierre y Corazón latiendo -->
             <section class="caja-cristal">
                 <h2 class="titulo-final">Te amo</h2>
                 <div class="corazon-latido">❤️</div>
@@ -358,58 +321,24 @@
         </div>
     </div>
 
-    <!-- Script para animaciones, interacción de sonido y diagnóstico -->
+    <!-- Script para animaciones e interacción de sonido -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const btnAbrir = document.getElementById("btn-abrir");
             const pantallaInicio = document.getElementById("pantalla-inicio");
             const contenidoPrincipal = document.getElementById("contenido-principal");
             const musica = document.getElementById("musica-fondo");
-            const panelDiagnostico = document.getElementById("panel-diagnostico");
-            const listaErrores = document.getElementById("lista-errores");
-
-            // Función para mostrar errores visualmente en pantalla de inicio
-            function registrarError(nombreArchivo) {
-                panelDiagnostico.style.display = "block";
-                const li = document.createElement("li");
-                li.textContent = `No se pudo cargar: "${nombreArchivo}"`;
-                listaErrores.appendChild(li);
-            }
-
-            // Diagnóstico de carga de música
-            musica.addEventListener("error", () => {
-                registrarError("cancion.mp3");
-            });
-
-            // Diagnóstico de carga de imágenes
-            const imagenes = document.querySelectorAll(".foto-comprobada");
-            // Usamos un Set para no duplicar los errores de las imágenes clonadas
-            const erroresRegistrados = new Set();
-
-            imagenes.forEach((img) => {
-                img.addEventListener("error", () => {
-                    const src = img.getAttribute("src");
-                    if (!erroresRegistrados.has(src)) {
-                        erroresRegistrados.add(src);
-                        registrarError(src);
-                    }
-                });
-            });
 
             btnAbrir.addEventListener("click", () => {
-                // Intentar reproducir el audio al hacer clic
-                musica.play()
-                    .then(() => {
-                        console.log("Audio sonando correctamente.");
-                    })
-                    .catch(error => {
-                        console.error("El navegador bloqueó la música o el archivo falló al cargarse:", error);
-                    });
+                // Intenta reproducir el archivo de sonido
+                musica.play().catch(error => {
+                    console.log("Reproducción automática bloqueada o archivo ausente:", error);
+                });
 
                 // Transición elegante desvaneciendo la pantalla blanca
                 pantallaInicio.style.opacity = "0";
 
-                // Una vez desvanecido, ocultamos el bloque de inicio por completo
+                // Una vez desvanecido, quitamos el bloque de inicio y revelamos el contenido
                 setTimeout(() => {
                     pantallaInicio.style.display = "none";
                     contenidoPrincipal.classList.remove("oculto");
