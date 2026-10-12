@@ -1,97 +1,324 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f9;
-    color: #333;
+  background-color: #0b0b0d;
+  color: #f0f0f0;
+  font-family: 'Space Mono', monospace; /* Fuente base técnica */
+  overflow-x: hidden;
 }
 
-header {
-    background-color: #5a6b7c;
-    color: white;
-    text-align: center;
-    padding: 3rem 1rem;
+#bg-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
 }
 
-main {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 0 1rem;
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+  z-index: 1;
 }
 
-section {
-    background: white;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+html {
+  scroll-behavior: smooth;
 }
 
-h1, h2 {
-    color: #2c3e50;
+/* NAVBAR FLOTANTE */
+.navbar {
+  position: fixed;
+  top: 1.5rem;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  padding: 0 1.5rem;
+  pointer-events: none; /* Permite hacer clic a través de los márgenes vacíos */
 }
 
-header h1 {
-    color: white; 
+.nav-container {
+  pointer-events: auto; /* Activa los clics solo dentro de la barra */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.5rem;
+  padding: 0.75rem 1.75rem;
+  background: rgba(14, 14, 18, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 9999px; /* Forma de píldora/cápsula */
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  transition: border-color 0.3s ease;
 }
 
-a {
-    color: #3498db;
-    text-decoration: none;
+.nav-container:hover {
+  border-color: rgba(255, 26, 26, 0.25);
 }
 
-a:hover {
-    text-decoration: underline;
+/* Marca / Logo texto */
+.nav-brand {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  letter-spacing: -0.5px;
 }
 
-footer {
-    text-align: center;
-    padding: 2rem;
-    font-size: 0.9rem;
-    color: #666;
-}
-body.dark-mode {
-    background-color: #121212;
-    color: #000000;
-}
-.logo-perfil {
-    width: 120px;          /* Controla el ancho del logo */
-    height: 120px;         /* Controla el alto (debe ser igual al ancho para un círculo perfecto) */
-    border-radius: 50%;    /* ¡Esta es la magia! Un radio del 50% hace la imagen completamente redonda */
-    object-fit: cover;     /* Evita que la imagen se estire o se deforme al recortarse */
-    margin-bottom: 1rem;   /* Separa un poco el logo del título de abajo */
-    border: 2px solid #2c3e50; /* Opcional: un borde sutil a juego con el diseño */
-}
-body.dark-mode .logo-perfil {
-    border-color: #ffffff; /* El borde sutil cambia a blanco en modo oscuro */
+.nav-brand span {
+  color: #ff1a1a;
+  font-family: 'Space Mono', monospace;
+  font-weight: 400;
+  font-size: 0.85rem;
 }
 
-/* 1. Cambia el fondo de las tarjetas (bloques <section>) */
-body.dark-mode section {
-    background-color: #1e1e1e;   /* Un gris un poco más claro que el fondo general */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Sombra más oscura y profunda */
-    border: 1px solid #333;       /* Un borde muy sutil para dar definición */
+/* Lista de enlaces */
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 1.8rem;
 }
 
-body.dark-mode section p,
-body.dark-mode section li {
-    color: #b3b3b3; /* Un gris claro idéntico para ambos bloques de texto */
+.nav-links a {
+  text-decoration: none;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.8rem;
+  color: #94949e;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: color 0.2s ease;
 }
 
-body.dark-mode section strong {
-    color: #ffffff; /* Dejamos las negritas en blanco puro para que resalten sobre el gris */
+.nav-num {
+  font-size: 0.68rem;
+  color: #ff1a1a;
+  opacity: 0.7;
 }
 
-/* 3. Asegura que los títulos (h1, h2) sigan siendo legibles */
-body.dark-mode h1,
-body.dark-mode h2 {
-    color: #ffffff; /* Blanco puro para los títulos principales */
+.nav-links a:hover {
+  color: #ffffff;
 }
-#boton-oscuro {
-    position: fixed;
-    top: 1rem;
-    right: 1rem;
-    padding: 10px 20px;
-    cursor: pointer;
+
+.nav-links a:hover .nav-num {
+  opacity: 1;
+}
+
+/* Indicador de estado (LED verde o rojo palpitante) */
+.nav-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #22c55e; /* Verde brillante */
+  border-radius: 50%;
+  box-shadow: 0 0 8px #22c55e;
+  animation: pulse-led 2s infinite ease-in-out;
+}
+
+.status-text {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  color: #71717a;
+  letter-spacing: 1px;
+}
+
+@keyframes pulse-led {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* Adaptación responsive para pantallas más pequeñas / móviles */
+@media (max-width: 768px) {
+  .nav-status {
+    display: none; /* Oculta el status para no apretar */
+  }
+
+  .nav-container {
+    gap: 1.2rem;
+    padding: 0.6rem 1.2rem;
+  }
+
+  .nav-num {
+    display: none; /* Deja solo las palabras en móviles */
+  }
+
+  .nav-links {
+    gap: 1rem;
+  }
+
+  .nav-links a {
+    font-size: 0.75rem;
+  }
+}
+
+/* 1. SECCIÓN HERO (PORTADA 100VH) */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  overflow: hidden; /* Evita que la malla se desborde */
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  background: linear-gradient(to bottom, transparent, #0b0b0d);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Contenedor relativo para que el tamaño dependa de el título grande */
+.brand-title {
+  position: relative;
+  display: inline-block;
+  line-height: 0.9;
+}
+
+.glitch-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(3rem, 9vw, 7.5rem);
+  text-transform: uppercase;
+  letter-spacing: -2px;
+  line-height: 0.95;
+  color: #ffffff;
+  margin: 0;
+}
+
+.title_dev {
+  position: absolute;
+  right: 0;
+  bottom: -0.85em; 
+  font-family: 'Syne';
+  font-weight: 700;
+  font-size: clamp(0.9rem, 2.5vw, 2rem); 
+  color: #ffffff; 
+  letter-spacing: 0px;
+  text-transform: lowercase; 
+  pointer-events: none;
+}
+
+.subtitle {
+  color: #888888;
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  letter-spacing: 1px;
+}
+
+
+.scroll-hint {
+  position: absolute;
+  bottom: 2.5rem;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  color: #666;
+  animation: bounce 2s infinite ease-in-out;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+
+.page-body {
+  position: relative;
+  z-index: 2;
+  background-color: #0b0b0d; 
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 4rem 2rem 8rem 2rem;
+}
+
+.section {
+  margin-bottom: 6rem;
+}
+
+.section h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 2rem;
+  letter-spacing: -0.5px;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 0.75rem;
+}
+
+/* Tarjetas con efecto vidrio para que la malla pase suavemente por detrás */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.project-card {
+  background: rgba(18, 18, 22, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 2rem;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 26, 26, 0.4);
+}
+
+.project-card .tag {
+  color: #ff1a1a;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  display: block;
+  margin-bottom: 0.8rem;
+}
+
+.project-card h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.4rem;
+  margin-bottom: 0.75rem;
+}
+
+.project-card p {
+  color: #a0a0a0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.bio-text {
+  color: #bbb;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  max-width: 700px;
 }

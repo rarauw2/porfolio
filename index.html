@@ -1,50 +1,87 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raúl Arroyo | Portfolio</title>
-    <link rel="icon" type="image/png" href="favicon_redondo.png">
-    <link rel="stylesheet" href="style.css">
-    <!-- <link rel="icon" type="image/jpeg" href="logo_rarroy.jpg"> -->
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+
+  <!-- Google Fonts: Syne (para el título grande) y Space Mono (para el toque técnico) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@800&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+  <!-- Barra de navegación superior -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <!-- Logotipo o marca rápida -->
+      <a href="#" class="nav-brand">rarroy<span>.dev</span></a>
 
-    <header>
-        <!-- <img src="logo_rarroy.png" alt="Logo Raúl Arroyo" class="logo-perfil"> -->
-        <!-- <h1>Hola, soy Raúl Arroyo Cañadas</h1> -->
-        <h1>Under construction</h1>
-        <!-- <p>Estudiante de Ingeniería Informática en la Escuela Superior De Informática de Ciudad Real (ESI - UCLM)</p> -->
-    </header>
+      <!-- Enlaces de navegación -->
+      <ul class="nav-links">
+        <li><a href="#hero"><span class="nav-num">00</span>Inicio</a></li>
+        <li><a href="#proyectos"><span class="nav-num">01</span>Proyectos</a></li>
+        <li><a href="#sobre-mi"><span class="nav-num">02</span>Sobre mí</a></li>
+        <li><a href="#contacto"><span class="nav-num">03</span>Contacto</a></li>
+      </ul>
 
-    <!-- <main>
-        <section id="sobre-mi">
-            <h2>Sobre Mí</h2>
-            <p>Actualmente estoy cursando el segundo año de la carrera, y me voy a especializar en el sector de la Computación, para trabajar con 
-                la Inteligencia Artificial y el Aprendizaje Automático. Me considero una persona curiosa, creativa y con muchas ganas de aprender.
-                Como títulos, cuento actualmente con el B2 de inglés.
-                Me gusta mucho la programación, y he trabajado con lenguajes como Python, C, C++, Java y JavaScript. Además, tengo conocimientos en HTML, CSS y SQL.
-            </p>
-        </section>
+      <!-- Detalle técnico / status -->
+      <div class="nav-status">
+        <span class="status-dot"></span>
+        <span class="status-text">DISPONIBLE</span>
+      </div>
+    </div>
+  </nav>
 
-        <section id="proyectos">
-            <h2>Mis Proyectos</h2>
-            <ul>
-                <li><strong>Servidor Doméstico:</strong> Montando CasaOS en local. Estoy empezando a trastear con un ordenador antiguo que tenía por casa para transformarlo 
-                    en un servidor. He elegido usar CasaOS de primeras para una primera toma de contacto, pero pienso pasarme a usar Proxmox y expandirme en este campo.</li>
-                <li><strong>Mi primer Portfolio:</strong> Con este porfolio quiero mostrar mis aptitudes y proyectos, además de aprender a programar en HTML, CSS y JavaScript.</li>
-            </ul>
-        </section>
-    </main>
+  <!-- Fondo animado y filtro de grano -->
+  <canvas id="bg-canvas"></canvas>
+  <div class="noise-overlay"></div>
 
-    <footer>
-        <p>Contacta conmigo: <a href="mailto:contacto@rarroy.dev">contacto@rarroy.dev</a></p>
-        <p><a href="CV_Raúl_Arroyo_Cañadas.pdf" target="_blank">Mi curriculum</a></p>
-    </footer>
+  <!-- PORTADA / HERO (Ocupa la pantalla completa al entrar) -->
+  <header class="hero" id="hero">
+    <div class="brand-title">
+      <h1 class="glitch-title">rarroy</h1>
+      <span class="title_dev">.dev</span>
+    </div>
+    <p class="subtitle">Software Developer & Engineering</p>
 
-    <button id="boton-oscuro">Cambiar Modo</button>
-    <script src="script.js"></script> -->
-    
+    <div class="scroll-hint">my projects ↓</div>
+  </header>
+
+  <!-- CONTENIDO NORMAL DE LA WEB (Aparece al bajar la rueda) -->
+  <main class="page-body">
+    <section class="section" id="proyectos">
+      <h2>PROYECTOS DESTACADOS</h2>
+
+      <div class="grid">
+        <article class="project-card">
+          <span class="tag">01 / WEB</span>
+          <h3>Proyecto Uno</h3>
+          <p>Descripción técnica de lo que hiciste, tecnologías empleadas y arquitectura.</p>
+        </article>
+
+        <article class="project-card">
+          <span class="tag">02 / SISTEMAS</span>
+          <h3>Proyecto Dos</h3>
+          <p>Otro desarrollo o herramienta que quieras enseñar con enlace a GitHub o demo.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="sobre-mi">
+      <h2>SOBRE MÍ</h2>
+      <p class="bio-text">
+        Estudiante / Ingeniero enfocado en sistemas, desarrollo y arquitectura de software.
+      </p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
 </body>
+
 </html>
